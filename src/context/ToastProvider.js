@@ -1,4 +1,5 @@
 import React from 'react';
+import useKeydown from '../hooks/useKeydown';
 
 export const ToastContext = React.createContext();
 
@@ -13,6 +14,11 @@ const defaultToast = [
 
 function ToastProvider({ children }) {
   const [toast, setToast] = React.useState(defaultToast);
+
+  const handleEscape = React.useCallback(() => {
+    setToast([]);
+  }, []);
+  useKeydown('Escape', handleEscape);
 
   const hideToast = (id) => {
     // change visibility if you need to keep track of toasts
