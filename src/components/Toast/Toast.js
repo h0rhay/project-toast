@@ -7,8 +7,6 @@ import {
   X,
 } from 'react-feather';
 
-import VisuallyHidden from '../VisuallyHidden';
-
 import { ToastContext } from '../App';
 
 import styles from './Toast.module.css';
@@ -22,8 +20,6 @@ const ICONS_BY_VARIANT = {
 
 function Toast({ toast }) {
   const { hideToast } = React.useContext(ToastContext);
-
-  console.log(toast);
   const { message, variant } = toast;
   const Icon = ICONS_BY_VARIANT[variant];
   const statusClass = styles[variant];
@@ -36,12 +32,13 @@ function Toast({ toast }) {
           </div>
           <p className={styles.content}>{message}</p>
           <button
+            aria-label='Dismiss message'
+            aria-live='off'
             className={styles.closeButton}
             onClick={() => {
               hideToast(toast.id);
             }}>
             <X size={24} />
-            <VisuallyHidden>Dismiss message</VisuallyHidden>
           </button>
         </div>
       )}
