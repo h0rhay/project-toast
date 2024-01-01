@@ -7,7 +7,7 @@ import {
   X,
 } from 'react-feather';
 
-import { ToastContext } from '../App';
+import { ToastContext } from '../../context/ToastProvider';
 
 import styles from './Toast.module.css';
 
