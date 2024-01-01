@@ -18,11 +18,21 @@ function App() {
   const [toast, setToast] = React.useState(defaultToast);
 
   const hideToast = (id) => {
-    setToast(
-      toast.map((toastItem) =>
-        toastItem.id === id ? { ...toastItem, visible: false } : toastItem
-      )
-    );
+    // change visibility if you need to keep track of toasts
+
+    // setToast(
+    //   toast.map((toastItem) =>
+    //     toastItem.id === id ? { ...toastItem, visible: false } : toastItem
+    //   )
+    // );
+
+    // remove toast from state if you don't need to keep track of toasts
+
+    const nextToasts = toast.filter((toastItem) => {
+      return toastItem.id !== id;
+    });
+
+    setToast(nextToasts);
   };
 
   const value = { toast, setToast, hideToast };
